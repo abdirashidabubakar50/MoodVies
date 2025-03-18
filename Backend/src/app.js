@@ -8,6 +8,8 @@ require('dotenv').config();
 const port = process.env.PORT
 const URI = process.env.MONGO_URI;
 
+app.use(express.json());
+
 // Connecting the database to the application
 mongoose.connect(URI, {
     useNewUrlParser: true,
@@ -21,5 +23,6 @@ mongoose.connect(URI, {
         process.exit(1);
     });
 
-app.use('/api', authRoutes);
-app.use('api/auth', authRoutes)
+app.use('/api/auth', authRoutes)
+
+module.exports = app
